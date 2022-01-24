@@ -21,9 +21,17 @@ server.post('/tweets', (req, res) => {
 });
 
 server.get('/tweets', (req, res) => {
+    let listaTweets = [];
+
     for (let i = 0; i < 10; i++) {
-        res.send(tweets);
+        listaTweets.push({
+            username: tweets[i].username,
+            avatar: usuarios.find((item) => (item.username === tweets[i].username)).avatar,
+            tweet: tweets[i].tweet
+        })
     }
+
+    res.send(listaTweets);
 });
 
 server.listen(5000);
