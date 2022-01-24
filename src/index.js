@@ -2,12 +2,15 @@ import express from "express";
 import cors from "cors";
 
 const server = express();
-let username;
-let avatar;
-let tweet;
+server.use(express.json());
 
-server.get('/', (req, res) => {
-    res.send('Hello world');
+const usuarios = [];
+const tweets = [];
+
+server.post('/sign-up', (req, res) => {
+    const usuario = req.body;
+    usuarios.push(usuario);
+    res.send(usuario);
 });
 
 server.listen(5000);
